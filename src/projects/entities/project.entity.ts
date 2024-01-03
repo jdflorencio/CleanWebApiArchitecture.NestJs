@@ -3,8 +3,9 @@ import crypto from 'crypto';
 
 export enum ProjectStatus {
   Pending = 'pending',
-  Active = 'cancelled',
+  Active = 'active',
   Completed = 'completed',
+  Cancelled = 'cancelled',
 }
 
 @Entity()
@@ -14,6 +15,9 @@ export class Project {
 
   @Column()
   name: string;
+
+  @Column({ nullable: true })
+  description: string;
 
   @Column({ nullable: true, type: 'datetime' })
   started_at: Date | null; //
@@ -33,6 +37,7 @@ export class Project {
   constructor(
     props: {
       name: string;
+      description: string;
       started_at?: Date | null;
       cancelled_at?: Date | null;
       forecasted_at?: Date | null;

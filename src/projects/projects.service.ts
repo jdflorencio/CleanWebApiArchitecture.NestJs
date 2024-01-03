@@ -5,6 +5,11 @@ import { UpdateProjectDto } from './dto/update-project.dto';
 import { Project, ProjectStatus } from './entities/project.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 
+//um use case representa a intenção de um usuario
+//controle é a interface de usuario
+
+//pode ser que a intenção do usuario colida/seja igual a um crud, mas quando a gente fica pensando demais em crud
+
 @Injectable()
 export class ProjectsService {
   constructor(

@@ -15,22 +15,24 @@ export class ProjectsService {
   create(createProjectDto: CreateProjectDto) {
     // DTO - Data transfer Object
 
-    const project = new Project(CreateProjectDto);
+    const project = new Project(createProjectDto);
 
     if (createProjectDto.started_at) {
       project.status = ProjectStatus.Active;
     }
+
+    return this.projectRepo.save(project);
   }
 
   findAll() {
-    return `This action returns all projects`;
+    return this.projectRepo.findAndCount();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} project`;
+  findOne(id: string) {
+    return this.projectRepo.findOneOrFail({ where: { id } });
   }
 
-  update(id: number, updateProjectDto: UpdateProjectDto) {
+  update(id: string, updateProjectDto: UpdateProjectDto) {
     return `This action updates a #${id} project`;
   }
 

@@ -27,3 +27,6 @@ export class StartProjectUseCase {
 
 //um use case represnta uma intenção de um usuario
 //serive layer VS use case
+
+//Solid = S -> single responsability =: que eu devo ter apenas um motivo para mudança.
+// Solid = D -> Dependency inversion =: depender de abstrações (interface ) ao inves de implementações

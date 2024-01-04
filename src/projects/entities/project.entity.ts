@@ -47,9 +47,9 @@ export class Project {
     Object.assign(this, props);
     this.id = id ?? crypto.randomUUID();
 
-    /*if (props.started_at) {
+    if (props?.started_at) {
       this.start(props.started_at);
-    }*/
+    }
   }
   start(started_at: Date) {
     if (this.status === ProjectStatus.Active)

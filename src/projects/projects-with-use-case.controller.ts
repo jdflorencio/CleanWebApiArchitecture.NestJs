@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Inject,
 } from '@nestjs/common';
 
 import { CreateProjectDto } from './dto/create-project.dto';
@@ -17,11 +18,14 @@ import { StartProjectUseCase } from './use-cases/start-project.use-case';
 
 @Controller('projects')
 export class ProjectsWithUseCaseController {
-  constructor(
-    private readonly createdProjectUseCase: CreateProjectUseCase,
-    private readonly findAllProjectUseCase: FindAllProjectUseCase,
-    private readonly startProjectUseCase: StartProjectUseCase,
-  ) {}
+  @Inject(CreateProjectUseCase)
+  private readonly createdProjectUseCase: CreateProjectUseCase;
+
+  @Inject(FindAllProjectUseCase)
+  private readonly findAllProjectUseCase: FindAllProjectUseCase;
+
+  @Inject(StartProjectUseCase)
+  private readonly startProjectUseCase: StartProjectUseCase;
 
   @Post()
   create(@Body() createProjectDto: CreateProjectDto) {

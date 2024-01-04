@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Project } from './entities/project.entity';
 import { CreateProjectUseCase } from './use-cases/create-project.use-case';
 import { FindAllProjectUseCase } from './use-cases/find-all-project.use-case';
+import { StartProjectUseCase } from './use-cases/start-project.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Project])],
@@ -13,6 +14,11 @@ import { FindAllProjectUseCase } from './use-cases/find-all-project.use-case';
     //ProjectsController,
     ProjectsWithUseCaseController,
   ],
-  providers: [ProjectsService, CreateProjectUseCase, FindAllProjectUseCase],
+  providers: [
+    ProjectsService,
+    CreateProjectUseCase,
+    FindAllProjectUseCase,
+    StartProjectUseCase,
+  ],
 })
 export class ProjectsModule {}

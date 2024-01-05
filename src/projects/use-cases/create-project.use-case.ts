@@ -1,18 +1,20 @@
-import { Repository } from 'typeorm';
 import { CreateProjectDto } from '../dto/create-project.dto';
 import { Project } from '../entities/project.entity';
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Inject, Injectable } from '@nestjs/common';
+import { IProjectRepository } from '../project.repository';
+
 @Injectable() //para permitir que isso vire um serviços
 export class CreateProjectUseCase {
-  constructor(
-    @InjectRepository(Project)
-    private readonly projectRepo: Repository<Project>,
-  ) {}
-  execute(input: CreateProjectDto) {
-    const project = new Project(input);
-    project.start(input.started_at);
+  @Inject('IProjectRepository')
+  private readonly projectRepo: IProjectRepository;
 
-    return this.projectRepo.save(project);
+  async execute(input: CreateProjectDto) {
+    const project = new Project(input);
+    await this.projectRepo.create(project);
+    return project;
   }
 }
+
+//Arquiterua Hexagonal
+// a inversao de dependencia
+//na camada de aplicação temos que interagir - ports and adaptadores

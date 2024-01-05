@@ -1,29 +1,26 @@
-import { InjectRepository } from '@nestjs/typeorm';
 import { StartProjectDto } from '../dto/start-project.dto';
-import { Project } from '../entities/project.entity';
-import { Repository } from 'typeorm';
+import { IProjectRepository } from '../project.repository';
+import { Inject } from '@nestjs/common';
 
-
-// Solid = 
+// Solid =
 export class StartProjectUseCase {
-  constructor(
-    @InjectRepository(Project)
-    private readonly projectRepo: Repository<Project>,
-  ) {}
+  @Inject('IProjectRepository')
+  private readonly projectRepo: IProjectRepository;
 
   async execute(id: string, input: StartProjectDto) {
-    const project = await this.projectRepo.findOneOrFail({ where: { id } });
+    const project = await this.projectRepo.findById(id);
 
     project.start(input.started_at);
 
-    return this.projectRepo.save(project);
+    await this.projectRepo.update(project);
+
+    return project;
   }
 }
 
 //duplicao de codigo
 // intencional
 // acidental
-
 
 //um use case represnta uma intenção de um usuario
 //serive layer VS use case

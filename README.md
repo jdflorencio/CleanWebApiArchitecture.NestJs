@@ -7,8 +7,7 @@
 
 # Sobre esse Projeto
 
-Este projeto foi baseado em um estudo sobre CLEAN ARCHITECTURE
-
+Este repositório contém um projeto implementado utilizando o conceito de Clean Architecture com NestJS. A arquitetura do projeto é organizada de forma modular, seguindo as diretrizes da Clean Architecture para promover a separação de preocupações e a manutenibilidade do código.
 
 ## Estruturação das pastas
 ```bash
@@ -39,3 +38,9 @@ Este projeto foi baseado em um estudo sobre CLEAN ARCHITECTURE
 │           └── start-project.use-case.ts
 
 ```
+
+Este projeto segue as práticas da Clean Architecture, mantendo a lógica de negócios isolada nos casos de uso (use cases), a manipulação de dados no repositório, e a exposição de endpoints na camada de controladores. Isso proporciona uma estrutura robusta e escalável para o desenvolvimento de aplicativos em NestJS.
+
+
+
+
